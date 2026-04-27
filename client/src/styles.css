@@ -16,6 +16,7 @@ body {
 
 button,
 input,
+select,
 textarea {
   font: inherit;
 }
@@ -36,6 +37,7 @@ button:disabled {
 }
 
 input,
+select,
 textarea {
   width: 100%;
   border: 1px solid #cbd5df;
@@ -105,7 +107,11 @@ h3 {
 
 .topbar,
 .list-header,
-.actions {
+.actions,
+.header-actions,
+.tabs,
+.filters,
+.item-title-row {
   align-items: center;
   display: flex;
   gap: 12px;
@@ -118,6 +124,32 @@ h3 {
 
 .topbar {
   margin-bottom: 24px;
+}
+
+.header-actions {
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.tabs,
+.filters {
+  background: #e8edf2;
+  border-radius: 8px;
+  padding: 4px;
+}
+
+.tab,
+.filter {
+  background: transparent;
+  color: #475467;
+  padding: 9px 12px;
+}
+
+.tab.active,
+.filter.active {
+  background: #fff;
+  color: #111827;
+  box-shadow: 0 1px 3px rgba(31, 41, 55, 0.12);
 }
 
 .content-grid {
@@ -167,13 +199,23 @@ h3 {
   padding: 10px 12px;
 }
 
-.client-list {
+.dashboard-message {
+  margin-bottom: 18px;
+}
+
+.form-row {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: 1fr 1fr;
+}
+
+.item-list {
   display: grid;
   gap: 12px;
   margin-top: 18px;
 }
 
-.client-item {
+.list-item {
   align-items: center;
   border: 1px solid #d8e0e8;
   border-radius: 8px;
@@ -183,14 +225,48 @@ h3 {
   padding: 16px;
 }
 
-.client-item p,
+.list-item p,
 .empty {
   color: #667085;
 }
 
+.attendance-info {
+  display: grid;
+  gap: 6px;
+}
+
+.item-title-row {
+  flex-wrap: wrap;
+}
+
+.status-pill {
+  border-radius: 999px;
+  color: #1f2933;
+  display: inline-flex;
+  font-size: 12px;
+  font-weight: 800;
+  padding: 4px 9px;
+}
+
+.status-pill.orcamento {
+  background: #fef3c7;
+}
+
+.status-pill.em_andamento {
+  background: #dbeafe;
+}
+
+.status-pill.finalizado {
+  background: #dcfce7;
+}
+
+.status-pill.cancelado {
+  background: #fee2e2;
+}
+
 @media (max-width: 820px) {
   .content-grid,
-  .client-item,
+  .list-item,
   .topbar {
     grid-template-columns: 1fr;
   }
@@ -199,8 +275,20 @@ h3 {
     display: grid;
   }
 
-  .client-item,
+  .list-item,
   .topbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .header-actions,
+  .tabs,
+  .filters,
+  .actions {
     align-items: stretch;
     flex-direction: column;
   }
