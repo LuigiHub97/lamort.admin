@@ -1,6 +1,6 @@
 :root {
-  color: #1f2933;
-  background: #f5f7f9;
+  color: #f4f0ff;
+  background: #08060f;
   font-family: Inter, Arial, sans-serif;
   line-height: 1.5;
 }
@@ -24,7 +24,8 @@ textarea {
 button {
   border: 0;
   border-radius: 6px;
-  background: #111827;
+  background: linear-gradient(135deg, #7c3aed, #c026d3 55%, #e879f9);
+  box-shadow: 0 0 22px rgba(192, 38, 211, 0.32);
   color: #fff;
   cursor: pointer;
   font-weight: 700;
@@ -40,15 +41,23 @@ input,
 select,
 textarea {
   width: 100%;
-  border: 1px solid #cbd5df;
+  border: 1px solid rgba(216, 180, 254, 0.28);
   border-radius: 6px;
-  background: #fff;
-  color: #111827;
+  background: rgba(13, 10, 24, 0.78);
+  color: #f8f5ff;
   padding: 11px 12px;
 }
 
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #e879f9;
+  box-shadow: 0 0 0 3px rgba(232, 121, 249, 0.18);
+  outline: none;
+}
+
 label {
-  color: #3d4a5c;
+  color: #d8c9ff;
   display: grid;
   font-size: 14px;
   font-weight: 700;
@@ -77,6 +86,10 @@ h3 {
 
 .auth-page {
   align-items: center;
+  background:
+    radial-gradient(circle at 18% 18%, rgba(168, 85, 247, 0.24), transparent 28%),
+    radial-gradient(circle at 82% 8%, rgba(236, 72, 153, 0.18), transparent 24%),
+    linear-gradient(135deg, #07040d 0%, #130b22 52%, #090712 100%);
   display: flex;
   min-height: 100vh;
   justify-content: center;
@@ -85,10 +98,16 @@ h3 {
 
 .auth-panel,
 .panel {
-  background: #fff;
-  border: 1px solid #d8e0e8;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.025)),
+    rgba(12, 9, 22, 0.88);
+  border: 1px solid rgba(216, 180, 254, 0.22);
   border-radius: 8px;
-  box-shadow: 0 18px 40px rgba(31, 41, 55, 0.08);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 18px 44px rgba(0, 0, 0, 0.38),
+    0 0 34px rgba(147, 51, 234, 0.12);
+  backdrop-filter: blur(14px);
 }
 
 .auth-panel {
@@ -100,9 +119,22 @@ h3 {
 }
 
 .dashboard {
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    radial-gradient(circle at top left, rgba(168, 85, 247, 0.18), transparent 35%),
+    #08060f;
+  background-size: 42px 42px, 42px 42px, auto, auto;
+  min-height: 100vh;
   margin: 0 auto;
-  max-width: 1180px;
+  max-width: none;
   padding: 32px 24px;
+}
+
+.dashboard > * {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1180px;
 }
 
 .topbar,
@@ -133,7 +165,8 @@ h3 {
 
 .tabs,
 .filters {
-  background: #e8edf2;
+  background: rgba(216, 180, 254, 0.12);
+  border: 1px solid rgba(216, 180, 254, 0.18);
   border-radius: 8px;
   padding: 4px;
 }
@@ -141,15 +174,16 @@ h3 {
 .tab,
 .filter {
   background: transparent;
-  color: #475467;
+  box-shadow: none;
+  color: #c9b8ff;
   padding: 9px 12px;
 }
 
 .tab.active,
 .filter.active {
-  background: #fff;
-  color: #111827;
-  box-shadow: 0 1px 3px rgba(31, 41, 55, 0.12);
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.88), rgba(217, 70, 239, 0.82));
+  color: #fff;
+  box-shadow: 0 0 18px rgba(217, 70, 239, 0.28);
 }
 
 .content-grid {
@@ -168,7 +202,7 @@ h3 {
 }
 
 .eyebrow {
-  color: #b45309;
+  color: #f0abfc;
   font-size: 12px;
   font-weight: 800;
   letter-spacing: 0;
@@ -176,26 +210,29 @@ h3 {
 }
 
 .secondary {
-  background: #e8edf2;
-  color: #1f2933;
+  background: rgba(216, 180, 254, 0.12);
+  border: 1px solid rgba(216, 180, 254, 0.2);
+  box-shadow: none;
+  color: #f4f0ff;
 }
 
 .danger {
-  background: #b42318;
+  background: linear-gradient(135deg, #be123c, #f43f5e);
 }
 
 .link-button {
   background: transparent;
-  color: #111827;
+  box-shadow: none;
+  color: #f0abfc;
   padding: 0;
   text-align: left;
 }
 
 .message {
-  background: #e9f7ef;
-  border: 1px solid #b7dfc7;
+  background: rgba(34, 197, 94, 0.12);
+  border: 1px solid rgba(134, 239, 172, 0.26);
   border-radius: 6px;
-  color: #14532d;
+  color: #bbf7d0;
   padding: 10px 12px;
 }
 
@@ -217,7 +254,8 @@ h3 {
 
 .list-item {
   align-items: center;
-  border: 1px solid #d8e0e8;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(216, 180, 254, 0.16);
   border-radius: 8px;
   display: flex;
   gap: 16px;
@@ -227,7 +265,7 @@ h3 {
 
 .list-item p,
 .empty {
-  color: #667085;
+  color: #a99bc4;
 }
 
 .attendance-info {
@@ -241,7 +279,7 @@ h3 {
 
 .status-pill {
   border-radius: 999px;
-  color: #1f2933;
+  color: #160b28;
   display: inline-flex;
   font-size: 12px;
   font-weight: 800;
@@ -249,19 +287,19 @@ h3 {
 }
 
 .status-pill.orcamento {
-  background: #fef3c7;
+  background: #facc15;
 }
 
 .status-pill.em_andamento {
-  background: #dbeafe;
+  background: #67e8f9;
 }
 
 .status-pill.finalizado {
-  background: #dcfce7;
+  background: #86efac;
 }
 
 .status-pill.cancelado {
-  background: #fee2e2;
+  background: #fda4af;
 }
 
 @media (max-width: 820px) {
