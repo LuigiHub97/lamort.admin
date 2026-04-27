@@ -1,7 +1,5 @@
-import dotenv from 'dotenv';
+import './env.js';
 import pkg from 'pg';
-
-dotenv.config({ quiet: true });
 
 const { Pool } = pkg;
 

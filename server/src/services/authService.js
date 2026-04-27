@@ -1,9 +1,7 @@
 import bcrypt from 'bcrypt';
-import dotenv from 'dotenv';
 import jwt from 'jsonwebtoken';
+import '../config/env.js';
 import { findByEmail, createUser } from '../repositories/userRepository.js';
-
-dotenv.config({ quiet: true });
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
