@@ -55,6 +55,20 @@ A API roda em:
 http://localhost:3000/api
 ```
 
+Em outro terminal, rode o frontend:
+
+```powershell
+cd client
+npm install
+npm run dev
+```
+
+O painel roda em:
+
+```txt
+http://localhost:5173
+```
+
 ## Rotas
 
 ### Auth
