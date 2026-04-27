@@ -19,12 +19,142 @@ const emptyAttendance = {
   observacoes: '',
 };
 
+const emptyQuote = {
+  nome: '',
+  telefone: '',
+  instagram: '',
+  descricao: '',
+  data: '',
+  observacoes: '',
+};
+
 const statusOptions = [
   { value: 'orcamento', label: 'Orcamento' },
   { value: 'em_andamento', label: 'Em andamento' },
   { value: 'finalizado', label: 'Finalizado' },
   { value: 'cancelado', label: 'Cancelado' },
 ];
+
+function PublicQuotePage() {
+  const [form, setForm] = useState(emptyQuote);
+  const [loading, setLoading] = useState(false);
+  const [sent, setSent] = useState(false);
+  const [message, setMessage] = useState('');
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setLoading(true);
+    setMessage('');
+
+    try {
+      await api.post('/public/orcamento', {
+        ...form,
+        data: form.data || null,
+      });
+
+      setSent(true);
+      setForm(emptyQuote);
+    } catch (error) {
+      setMessage(error.response?.data?.error || 'Nao foi possivel enviar sua solicitacao.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <main className="public-page">
+      <section className="public-hero">
+        <div className="public-copy">
+          <p className="eyebrow">Lamort Studio</p>
+          <h1>Solicite seu orçamento</h1>
+          <p>
+            Envie sua ideia com os detalhes principais. A equipe recebe no painel e chama voce para alinhar agenda,
+            valor e referencias.
+          </p>
+        </div>
+
+        <form onSubmit={handleSubmit} className="public-form stack">
+          {sent ? (
+            <div className="success-block">
+              <h2>Solicitacao enviada</h2>
+              <p>Recebemos seu pedido. Em breve a equipe entra em contato pelo telefone informado.</p>
+              <button type="button" onClick={() => setSent(false)}>
+                Enviar outra solicitacao
+              </button>
+            </div>
+          ) : (
+            <>
+              <div className="form-row">
+                <label>
+                  Nome
+                  <input
+                    value={form.nome}
+                    onChange={(event) => setForm({ ...form, nome: event.target.value })}
+                    required
+                  />
+                </label>
+
+                <label>
+                  WhatsApp
+                  <input
+                    value={form.telefone}
+                    onChange={(event) => setForm({ ...form, telefone: event.target.value })}
+                    required
+                  />
+                </label>
+              </div>
+
+              <div className="form-row">
+                <label>
+                  Instagram
+                  <input
+                    value={form.instagram}
+                    onChange={(event) => setForm({ ...form, instagram: event.target.value })}
+                    placeholder="@seuuser"
+                  />
+                </label>
+
+                <label>
+                  Data desejada
+                  <input
+                    type="date"
+                    value={form.data}
+                    onChange={(event) => setForm({ ...form, data: event.target.value })}
+                  />
+                </label>
+              </div>
+
+              <label>
+                Descreva sua ideia
+                <textarea
+                  value={form.descricao}
+                  onChange={(event) => setForm({ ...form, descricao: event.target.value })}
+                  rows="5"
+                  required
+                />
+              </label>
+
+              <label>
+                Observacoes
+                <textarea
+                  value={form.observacoes}
+                  onChange={(event) => setForm({ ...form, observacoes: event.target.value })}
+                  rows="3"
+                />
+              </label>
+
+              <button type="submit" disabled={loading}>
+                {loading ? 'Enviando...' : 'Enviar orçamento'}
+              </button>
+
+              {message && <p className="message">{message}</p>}
+            </>
+          )}
+        </form>
+      </section>
+    </main>
+  );
+}
 
 function App() {
   const [token, setToken] = useState(() => localStorage.getItem('lamort_token'));
@@ -594,4 +724,6 @@ function App() {
   );
 }
 
-createRoot(document.getElementById('root')).render(<App />);
+const isPublicQuotePage = window.location.pathname === '/orcamento';
+
+createRoot(document.getElementById('root')).render(isPublicQuotePage ? <PublicQuotePage /> : <App />);
